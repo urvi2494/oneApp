@@ -19,11 +19,10 @@ public class ApiGatewayApplication implements ApplicationContextAware {
 	private static ApplicationContext appContext;
 	public static void main(String[] args) {
 		SpringApplication.run(ApiGatewayApplication.class, args);
-		String[] beans = appContext.getBeanDefinitionNames();
-		Arrays.sort(beans);
-		 for (String bean : beans) {
-	            System.out.println(bean);
-	        }
+		/*
+		 * String[] beans = appContext.getBeanDefinitionNames(); Arrays.sort(beans); for
+		 * (String bean : beans) { System.out.println(bean); }
+		 */
 	}
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
