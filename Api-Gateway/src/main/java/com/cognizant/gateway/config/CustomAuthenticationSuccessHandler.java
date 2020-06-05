@@ -18,8 +18,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler{
 
-	@Autowired
-	JwtTokenProvider jwtTokenProvider;
+	
+	private JwtTokenProvider jwtTokenProvider;
+	
+	CustomAuthenticationSuccessHandler(JwtTokenProvider jwtTokenProvider)
+	{
+		this.jwtTokenProvider=jwtTokenProvider;
+	}
 	
 	private static final Logger logger = LoggerFactory.getLogger(CustomAuthenticationSuccessHandler.class);
 	@Override
@@ -29,9 +34,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		 logger.info("auth credentials "+authentication.getCredentials());
 		 logger.info("auth principal "+authentication.getPrincipal());
 		 logger.info("is authenticated: "+authentication.isAuthenticated());
-		 JwtTokenProvider j=new JwtTokenProvider();
+		// JwtTokenProvider j=new JwtTokenProvider();
 		 User user=(User)authentication.getPrincipal();
-		 String token = j.createToken(user.getUsername(), authentication.getAuthorities());
+		 String token = this.jwtTokenProvider.createToken(user.getUsername(), authentication.getAuthorities());
          logger.info("token created: "+token);
          HttpServletResponse  myResponse= (HttpServletResponse) response;
          

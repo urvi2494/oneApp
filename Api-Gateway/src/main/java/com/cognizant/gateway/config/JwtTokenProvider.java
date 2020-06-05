@@ -25,11 +25,18 @@ public class JwtTokenProvider {
 	@Value("${security.jwt.token.secret-key:secret}")
 	private String secretKey = "secret";
 
-	@Value("${security.jwt.token.expire-length:3600000}")
-	private long validityInMilliseconds = 3600000; // 1h
+	
+	private long validityInMilliseconds; // 1h
 
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
+	@Value("${security.jwt.token.expire-length}")   
+    public void setmValue(long validityInMilliseconds) {
+    this.validityInMilliseconds = validityInMilliseconds;
+    
+	}
+    
+    
 	public Authentication getAuthentication(String token,UserDetails user) {
 		logger.info("JwtTokenProvider---> getAuthentication for token: "+token);
 		return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), user.getAuthorities());
@@ -119,6 +126,7 @@ public class JwtTokenProvider {
 			claims.put("role",a.getAuthority());	
 		});
 		Date now = new Date(); 
+		logger.info("validity in ms: "+this.validityInMilliseconds);
 		Date validity = new Date(now.getTime() +validityInMilliseconds); 
 		logger.info("validity of token "+validity);
 		

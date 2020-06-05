@@ -17,8 +17,6 @@ import com.cognizant.gateway.vo.LoginVO;
 @RequestMapping("/admin")
 public class AdminController {
 
-	
-
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	

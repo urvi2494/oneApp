@@ -55,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		  } 
 	@Bean
 	public CustomUsernamePasswordFilter CustomUsernamePasswordFilter() throws Exception {
-		return new CustomUsernamePasswordFilter(new CustomAuthenticationSuccessHandler(), authenticationManagerBean());
+		return new CustomUsernamePasswordFilter(new CustomAuthenticationSuccessHandler(jwtTokenProvider), authenticationManagerBean());
 	}
 
 	@Override
@@ -69,7 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**/portal").hasAuthority("User")
 				.anyRequest().authenticated().and()
 				.addFilter(CustomUsernamePasswordFilter())
-				.apply(new JwtConfigurer(jwtTokenProvider,userDetailsService));
+				.apply(new JwtConfigurer(jwtTokenProvider,userDetailsService))
+				;
 		// @formatter:on
 	}
 
