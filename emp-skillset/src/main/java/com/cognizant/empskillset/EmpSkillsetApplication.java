@@ -13,5 +13,10 @@ public class EmpSkillsetApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EmpSkillsetApplication.class, args);
 	}
+	
+	public void test()
+	{
+		
+	}
 
 }
