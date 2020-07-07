@@ -22,7 +22,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableDiscoveryClient
 public class EmpPortalApplication {
 
-	public void tryOne() {}
+	public void tryOne() {
+		System.out.println("in tryOne");
+	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(EmpPortalApplication.class, args);
