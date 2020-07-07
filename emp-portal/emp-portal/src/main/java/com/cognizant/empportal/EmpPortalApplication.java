@@ -26,6 +26,11 @@ public class EmpPortalApplication {
 		System.out.println("trying conflict in tryOne");
 	}
 	
+
+	public void tryTwo() {
+		System.out.println("trying conflict in tryOne");
+	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(EmpPortalApplication.class, args);
 	}
