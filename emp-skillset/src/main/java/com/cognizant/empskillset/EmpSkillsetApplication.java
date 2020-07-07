@@ -14,9 +14,4 @@ public class EmpSkillsetApplication {
 		SpringApplication.run(EmpSkillsetApplication.class, args);
 	}
 	
-	public void test()
-	{
-		
-	}
-
 }
